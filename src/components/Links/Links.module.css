@@ -42,9 +42,3 @@
     flex-direction: column;
   }
 }
-
-@media (prefers-color-scheme: dark) {
-  .card {
-    border-color: #222;
-  }
-}
