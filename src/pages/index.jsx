@@ -3,17 +3,16 @@ import styles from "src/styles/Home.module.css";
 import { Main } from "src/components/Main";
 import { Header } from "src/components/Header";
 import { Footer } from "src/components/Footer";
-import { useCallback, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  const foo = 1;
+  const [foo, setFoo] = useState(1);
 
   // component内でuseCallbackを使うことで再レンダリング時にメソッドの再生成を防止;
-  const handleClick = useCallback((e) => {
-    console.log(e.target.href);
-    e.preventDefault();
-    alert(foo);
-  }, []);
+  const handleClick = (e) => {
+    setFoo((foo) => foo + 1);
+    setFoo((foo) => foo + 1);
+  };
 
   useEffect(() => {
     // マウント時
@@ -31,10 +30,11 @@ export default function Home() {
         <title>Index Page</title>
       </Head>
 
+      <h1>{foo}</h1>
       <Header />
-      <a href="/about" onClick={handleClick}>
+      <button href="/about" onClick={handleClick}>
         button
-      </a>
+      </button>
       <Main page="index" />
       <Footer />
     </div>
