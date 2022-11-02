@@ -7,6 +7,8 @@ import { useCallback, useEffect, useState } from "react";
 
 export default function Home() {
   const [count, setCount] = useState(1);
+  const [text, setText] = useState("");
+  const [isShow, setIsShow] = useState(true);
 
   // component内でuseCallbackを使うことで再レンダリング時にメソッドの再生成を防止;
   const handleClick = useCallback(() => {
@@ -14,6 +16,12 @@ export default function Home() {
       setCount((count) => count + 1);
     }
   }, [count]);
+
+  const handleDisplay = () => {
+    setIsShow((isShow) => {
+      return isShow ? false : true;
+    });
+  };
 
   useEffect(() => {
     // マウント時
@@ -31,11 +39,22 @@ export default function Home() {
         <title>Index Page</title>
       </Head>
 
-      <h1>{count}</h1>
+      {isShow ? <h1>{count}</h1> : null}
       <Header />
-      <button href="/about" onClick={handleClick}>
-        button
+      <button onClick={handleClick}>button</button>
+      <button href="/about" onClick={handleDisplay}>
+        {isShow ? "非表示" : "表示"}
       </button>
+      <input
+        type="text"
+        value={text}
+        onChange={(e) => {
+          if (text.length >= 5) {
+            return;
+          }
+          setText(e.target.value);
+        }}
+      />
       <Main page="index" />
       <Footer />
     </div>
