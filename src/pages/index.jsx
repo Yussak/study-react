@@ -13,13 +13,15 @@ export default function Home() {
   // component内でuseCallbackを使うことで再レンダリング時にメソッドの再生成を防止;
   const handleClick = useCallback(() => {
     if (count < 10) {
-      setCount((count) => count + 1);
+      setCount((prevCount) => prevCount + 1);
     }
   }, [count]);
 
-  const handleDisplay = () => {
-    setIsShow((isShow) => {
-      return isShow ? false : true;
+  const handleDisplay = useCallback(() => {
+    setIsShow((prevIsShow) => {
+      return prevIsShow ? false : true;
+    });
+  }, []);
     });
   };
 
