@@ -13,6 +13,7 @@ export default function About({
   array,
   handleChange,
   handleAdd,
+  doubleCount,
 }) {
   return (
     <div className={styles.container}>
@@ -21,7 +22,8 @@ export default function About({
       </Head>
 
       <Header />
-      {isShow ? <h1>{count}</h1> : null}
+      {isShow ? <h1>{doubleCount}</h1> : null}
+      {/* {isShow ? <h1>{count}</h1> : null} */}
       <button onClick={handleClick}>button</button>
       <button href="/about" onClick={handleDisplay}>
         {isShow ? "非表示" : "表示"}
